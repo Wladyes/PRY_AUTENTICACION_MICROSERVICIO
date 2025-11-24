@@ -68,3 +68,5 @@ El microservicio trabaja con una base MySQL dedicada. Sanctum administra la tabl
 Wladymir Escobar
 [gwescobar@espe.edu.ec](mailto:gwescobar@espe.edu.ec)
 Trabajo académico – Arquitectura de Software
+
+The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).

@@ -10,29 +10,29 @@ use Illuminate\Support\Facades\Hash;
 class AuthController extends Controller
 {
     // Registro de usuario
-    public function register(Request $request)
+    public function register(Request $request) //function register(Request $request)
     {
         try {
             $data = $request->validate([
-                'name' => 'required|string|max:255',
-                'email' => 'required|email|unique:users,email',
-                'password' => 'required|string|min:6|confirmed',
+                'name' => 'required|string|max:255', // Nombre de usuario
+                'email' => 'required|email|unique:users,email', // Email único
+                'password' => 'required|string|min:6|confirmed', // Contraseña con confirmación
             ]);
-
+              // Crear usuario
             $user = User::create([
                 'name' => $data['name'],
                 'email' => $data['email'],
                 'password' => Hash::make($data['password']),
             ]);
-
+              // Crear token de acceso
             $token = $user->createToken('api_token')->plainTextToken;
-
+              // Responder con datos del usuario y token
             return response()->json([
                 'message' => 'Usuario registrado correctamente',
                 'user' => $user,
                 'token' => $token,
             ], 201);
-            
+             // Capturar errores
         } catch (\Exception $e) {
             return response()->json([
                 'error' => 'Error en el registro',
@@ -42,7 +42,7 @@ class AuthController extends Controller
     }
 
     // Login de usuario
-    public function login(Request $request)
+    public function login(Request $request) //function login(Request $request)
     {
         try {
             $credentials = $request->validate([
@@ -72,7 +72,7 @@ class AuthController extends Controller
     }
 
     // Validar token (para integración con otros microservicios)
-    public function validateToken(Request $request)
+    public function validateToken(Request $request) //function validateToken(Request $request)
     {
         return response()->json([
             'message' => 'Token válido',
